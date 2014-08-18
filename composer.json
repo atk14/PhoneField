@@ -1,0 +1,22 @@
+{
+        "name": "atk14/phone-field",
+        "type": "library",
+        "description": "ATK14 form field for entering phone numbers",
+        "keywords": ["atk14", "forms", "phone", "field"],
+        "homepage": "https://github.com/atk14/PhoneField",
+        "license": ["MIT"],
+        "authors": [
+                {
+                        "name": "Jaromir Tomek",
+                        "homepage": "https://github.com/yarri"
+                }
+        ],
+        "require": {
+                "php": ">=5.0.0"
+        },
+        "require-dev": {
+        },
+        "autoload": {
+                "classmap": ["src"]
+        }
+}
