@@ -25,6 +25,7 @@ class PhoneField extends RegexField{
 		);
 
 		$value = preg_replace('/[\s-]/','',$value);
+		$value = str_replace(html_entity_decode('&nbsp;'),'',$value); // removing non-breaking space
 		if(preg_match('/^[0-9]{9}$/',$value)){
 			$value = "+420.$value";
 		}
