@@ -5,7 +5,12 @@ class PhoneField extends RegexField{
 			"error_message" => _("Enter valid phone number (+420.605123456)"),
 			"null_empty_output" => true,
 			"help_text" => _("Enter phone number in format +420.605123456"),
+			"default_country_code" => "420", // "420" or "+420"
 		),$options);
+
+		$this->default_country_code = $options["default_country_code"];
+		unset($options["default_country_code"]);
+
 		// TODO: jsou cisla, ktera zacinaji nulou: +044.1425838079
 		parent::__construct('/^\+[1-9][0-9]{0,3}\.[0-9]{6,12}$/',$options);
 	}
@@ -24,10 +29,13 @@ class PhoneField extends RegexField{
 			'975', '976', '977', '98', '992', '993', '994', '995', '996', '998'
 		);
 
+		$dcc = $this->default_country_code;
+		$dcc = preg_replace('/^\+/','',$dcc); // "+420" -> "420"
+
 		$value = preg_replace('/[\s-]/','',$value);
 		$value = str_replace(html_entity_decode('&nbsp;'),'',$value); // removing non-breaking space
 		if(preg_match('/^[0-9]{9}$/',$value)){
-			$value = "+420.$value";
+			$value = "+$dcc.$value";
 		}
 
 		if(preg_match('/^\+?('.join('|',$country_phone_codes).')([0-9]{6,12})$/',$value,$matches)){
