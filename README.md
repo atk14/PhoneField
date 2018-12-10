@@ -13,7 +13,7 @@ Just use the Composer:
 
 Optionaly you can link the field source file to the regular location
 
-    cd path/to/your/atk14/project/app/fields/
+    cd path/to/your/atk14/project/
     ln -s ../../vendor/atk14/phone-field/src/phone_field.php app/fields/phone_field.php
 
 License
