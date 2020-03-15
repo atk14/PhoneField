@@ -34,6 +34,21 @@ class PhoneField extends RegexField{
 		$this->help_text = str_replace("%sample_phone_number%",$sample_phone_number,$this->help_text);
 	}
 
+	function format_initial_data($phone){
+		if(preg_match('/^(\+\d+)\.(\d+)$/',$phone,$matches)){
+			$cc = $matches[1];
+			$number = $matches[2];
+			$number_ar = array();
+			while(strlen($part = substr($number,0,3))){
+				$number_ar[] = $part;
+				$number = substr($number,strlen($part));
+			}
+			$number = join(" ",$number_ar);
+			$phone = "$cc $number";
+		}
+		return $phone;
+	}
+
 	function clean($value){
 		// cerpano odsud: http://countrycode.org/
 		$country_phone_codes = array(
