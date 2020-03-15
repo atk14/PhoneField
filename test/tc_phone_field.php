@@ -1,9 +1,40 @@
 <?php
 class TcPhoneField extends TcBase {
 
+	function testWidget(){
+		$form = new Atk14Form();
+		$form->add_field("phone", new PhoneField());
+		$form->add_field("phone2", new PhoneField(array(
+			"default_country_code" => "421",
+			"required" => false,
+		)));
+		$form->add_field("phone3", new PhoneField(array(
+			"initial" => "",
+		)));
+
+		$field = $form->get_field("phone");
+		$this->assertEquals('<input required="required" type="text" name="phone" class="text form-control" id="id_phone" value="+420 " />',$field->as_widget());
+
+		$field = $form->get_field("phone2");
+		$this->assertEquals('<input type="text" name="phone2" class="text form-control" id="id_phone2" value="421 " />',$field->as_widget());
+
+		$field = $form->get_field("phone3");
+		$this->assertEquals('<input required="required" type="text" name="phone3" class="text form-control" id="id_phone3" />',$field->as_widget());
+	}
+
 	function test(){
+		// Help text
+
+		$field = new PhoneField();
+		$this->assertEquals("Enter phone number in format +420 605 123 456",$field->help_text);
+
+		$field = new PhoneField(array("sample_phone_number" => "421 111 222 333"));
+		$this->assertEquals("Enter phone number in format 421 111 222 333",$field->help_text);
+
+		// Valid values
+
 		$this->field = new PhoneField(array("default_country_code" => "+420"));
-		$this->_testValidNumbers([
+		$this->_testValidValues([
 			"+420.605111222" => "+420.605111222",
 			"+420605111223" => "+420.605111223",
 			"420605111224" => "+420.605111224",
@@ -18,7 +49,7 @@ class TcPhoneField extends TcBase {
 		]);
 
 		$this->field = new PhoneField(array("default_country_code" => "+421"));
-		$this->_testValidNumbers([
+		$this->_testValidValues([
 			"+420.605111222" => "+420.605111222",
 			"+420605111223" => "+420.605111223",
 			"420605111224" => "+420.605111224",
@@ -31,12 +62,35 @@ class TcPhoneField extends TcBase {
 			"+421 605 333 445" => "+421.605333445",
 			"421605333446" => "+421.605333446",
 		]);
+
+		// Nulls (valid values)
+
+		$this->field = new PhoneField(array("default_country_code" => "+420", "required" => false));
+		$this->_testValidValues([
+			"" => null,
+			"+420" => null,
+			"420" => null,
+			"421" => null,
+		]);
+
+		// Invalid values
+
+		$this->field = new PhoneField(array("default_country_code" => "+420"));
+
+		$err = $this->assertInvalid("");
+		$this->assertEquals("Enter phone number",$err);
+
+		$err = $this->assertInvalid("+420");
+		$this->assertEquals("Enter phone number",$err);
+
+		$err = $this->assertInvalid("xx");
+		$this->assertEquals("Enter valid phone number (+420 605 123 456)",$err);
 	}
 
-	function _testValidNumbers($ary){
+	function _testValidValues($ary){
 		foreach($ary as $input => $phone){
 			$cleaned_phone = $this->assertValid($input);
-			$this->assertEquals($phone,$cleaned_phone);
+			$this->assertTrue($phone === $cleaned_phone);
 		}
 	}
 }

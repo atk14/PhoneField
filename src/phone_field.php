@@ -1,19 +1,39 @@
 <?php
 class PhoneField extends RegexField{
+
 	function __construct($options = array()){
-		$options = array_merge(array(
-			"error_message" => _("Enter valid phone number (+420.605123456)"),
+		$options += array(
+			"error_messages" => array(),
+			"help_text" => _("Enter phone number in format %sample_phone_number%"),
 			"null_empty_output" => true,
-			"help_text" => _("Enter phone number in format +420.605123456"),
-			"default_country_code" => "420", // "420" or "+420"
-		),$options);
+			"default_country_code" => "+420", // "420" or "+420"
+			"sample_phone_number" => "+420 605 123 456",
+		);
+
+		$options += array(
+			"initial" => $options["default_country_code"] ? $options["default_country_code"]." " : "",
+		);
+
+		$options["error_messages"] += array(
+			"invalid" => _("Enter valid phone number (%sample_phone_number%)"),
+			"required" => _("Enter phone number"),
+		);
 
 		$this->default_country_code = $options["default_country_code"];
 		unset($options["default_country_code"]);
 
+		$sample_phone_number = $options["sample_phone_number"];
+		unset($options["sample_phone_number"]);
+
 		// TODO: jsou cisla, ktera zacinaji nulou: +044.1425838079
 		parent::__construct('/^\+[1-9][0-9]{0,3}\.[0-9]{6,12}$/',$options);
+
+		foreach($this->messages as $k => &$v){
+			$v = str_replace("%sample_phone_number%",$sample_phone_number,$v);
+		}
+		$this->help_text = str_replace("%sample_phone_number%",$sample_phone_number,$this->help_text);
 	}
+
 	function clean($value){
 		// cerpano odsud: http://countrycode.org/
 		$country_phone_codes = array(
@@ -34,6 +54,12 @@ class PhoneField extends RegexField{
 
 		$value = preg_replace('/[\s-]/','',$value);
 		$value = str_replace(html_entity_decode('&nbsp;'),'',$value); // removing non-breaking space
+
+		// if the value is only a country code, it means that it is no number
+		if(preg_match('/^\+?('.join('|',$country_phone_codes).')$/',$value)){
+			$value = "";
+		}
+
 		if(preg_match('/^[0-9]{9}$/',$value)){
 			$value = "+$dcc.$value";
 		}
