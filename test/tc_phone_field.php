@@ -79,7 +79,12 @@ class TcPhoneField extends TcBase {
 		$this->field = new PhoneField(array("default_country_code" => "+420", "required" => false));
 		$this->_testValidValues([
 			"" => null,
+			" " => null,
+			"420" => null,
+			"420." => null,
 			"+420" => null,
+			"+420." => null,
+			" + 420 . " => null,
 			"420" => null,
 			"421" => null,
 		]);

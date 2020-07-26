@@ -71,7 +71,7 @@ class PhoneField extends RegexField{
 		$value = str_replace(html_entity_decode('&nbsp;'),'',$value); // removing non-breaking space
 
 		// if the value is only a country code, it means that it is no number
-		if(preg_match('/^\+?('.join('|',$country_phone_codes).')$/',$value)){
+		if(preg_match('/^\+?('.join('|',$country_phone_codes).')\.?$/',$value)){
 			$value = "";
 		}
 
