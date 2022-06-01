@@ -3,6 +3,10 @@ All notable changes to this project will be documented in this file.
 
 ## [Unreleased]
 
+## [1.1.1] - 2022-06-01
+
+* 901e394 - Defined constants PHONE_FIELD_DEFAULT_COUNTRY_CODE and PHONE_FIELD_SAMPLE_PHONE_NUMBER
+
 ## [1.1] - 2020-03-16
 
 - By default, the initial value is default_country_code
