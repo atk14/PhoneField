@@ -1,4 +1,7 @@
 <?php
+defined("PHONE_FIELD_DEFAULT_COUNTRY_CODE") || define("PHONE_FIELD_DEFAULT_COUNTRY_CODE","+420");
+defined("PHONE_FIELD_SAMPLE_PHONE_NUMBER") || define("PHONE_FIELD_SAMPLE_PHONE_NUMBER","+420 605 123 456");
+
 class PhoneField extends RegexField{
 
 	function __construct($options = array()){
@@ -6,8 +9,8 @@ class PhoneField extends RegexField{
 			"error_messages" => array(),
 			"help_text" => _("Enter phone number in format %sample_phone_number%"),
 			"null_empty_output" => true,
-			"default_country_code" => "+420", // "420" or "+420"
-			"sample_phone_number" => "+420 605 123 456",
+			"default_country_code" => PHONE_FIELD_DEFAULT_COUNTRY_CODE, // "421" or "+420"
+			"sample_phone_number" => PHONE_FIELD_SAMPLE_PHONE_NUMBER,
 		);
 
 		$options += array(
