@@ -38,7 +38,7 @@ class PhoneField extends RegexField{
 	}
 
 	function format_initial_data($phone){
-		if(preg_match('/^(\+\d+)\.(\d+)$/',$phone,$matches)){
+		if(preg_match('/^(\+\d+)\.(\d+)$/',(string)$phone,$matches)){
 			$cc = $matches[1];
 			$number = $matches[2];
 			$number_ar = array();
