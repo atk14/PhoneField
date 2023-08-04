@@ -4,6 +4,40 @@ defined("PHONE_FIELD_SAMPLE_PHONE_NUMBER") || define("PHONE_FIELD_SAMPLE_PHONE_N
 
 class PhoneField extends RegexField{
 
+	protected static $SAMPLE_PHONE_NUMBERS = [
+		"AR" => "+54 9 XXX XXX XXXX",
+		"AT" => "+43 1234 56789",
+		"BG" => "+359 2 123 4567",
+		"CA" => "+1 604 555 5555",
+		"CH" => "+41 61 XXX XXXX",
+		"CN" => "+86 139 1099 8888",
+		"CZ" => "+420 605 123 456",
+		"DE" => "+49 69 1234 5678",
+		"DK" => "+45 123 4567 9",
+		"EG" => "+20 2 XXXXXXXX", // ???
+		"GB" => "+44 7911 123456",
+		"IL" => "+972 558 5556 42",
+		"IN" => "+91 123 4567 8910",
+		"JP" => "+81 123 5678 9101",
+		"KZ" => "+997 727 123 46",
+		"LV" => "+371 6678 1234",
+		"MA" => "+212 520 XXXXXX",
+		"MD" => "+373 1234 5678",
+		"MX" => "+52 55 1254 5678",
+		"NO" => "+47 815 XX XXX",
+		"NZ" => "+64 9 123 4567",
+		"PE" => "+51 1234 567",
+		"RS" => "+381 11 222 5522",
+		"RU" => "+7 123 4567 901",
+		"SK" => "+421 905 123456",
+		"SM" => "+378 XXXXXX",
+		"TN" => "+216 98123456",
+		"TR" => "+90 212 1234567",
+		"UA" => "+380 XX XXX XX XX",
+		"US" => "+1 123 345 6789",
+		"ZA" => "+27 123 456 789",
+	];
+
 	function __construct($options = array()){
 		$options += array(
 			"error_messages" => array(),
