@@ -12,6 +12,10 @@ class TcPhoneField extends TcBase {
 			"initial" => "",
 		)));
 
+		$form->add_field("phone_at", new PhoneField(array(
+			"default_country_code" => "AT"
+		)));
+
 		$field = $form->get_field("phone");
 		$this->assertEquals('<input required="required" type="text" name="phone" class="text form-control" id="id_phone" value="+420 " />',$field->as_widget());
 
@@ -20,6 +24,9 @@ class TcPhoneField extends TcBase {
 
 		$field = $form->get_field("phone3");
 		$this->assertEquals('<input required="required" type="text" name="phone3" class="text form-control" id="id_phone3" />',$field->as_widget());
+
+		$field = $form->get_field("phone_at");
+		$this->assertEquals('<input required="required" type="text" name="phone_at" class="text form-control" id="id_phone_at" value="+43 " />',$field->as_widget());
 	}
 
 	function test_format_initial_data(){
@@ -99,8 +106,24 @@ class TcPhoneField extends TcBase {
 		$err = $this->assertInvalid("+420");
 		$this->assertEquals("Enter phone number",$err);
 
+		$err = $this->assertInvalid("+421");
+		$this->assertEquals("Enter phone number",$err);
+
 		$err = $this->assertInvalid("xx");
 		$this->assertEquals("Enter valid phone number (+420 605 123 456)",$err);
+
+		// Using ISO-2 country code in the default_country_code option
+
+		$this->field = new PhoneField(array("default_country_code" => "SK"));
+
+		$err = $this->assertInvalid("+420");
+		$this->assertEquals("Enter phone number",$err);
+
+		$err = $this->assertInvalid("+421");
+		$this->assertEquals("Enter phone number",$err);
+
+		$err = $this->assertInvalid("xx");
+		$this->assertEquals("Enter valid phone number (+421 905 123456)",$err);
 	}
 
 	function _testValidValues($ary){

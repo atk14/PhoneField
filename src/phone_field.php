@@ -1,6 +1,6 @@
 <?php
-defined("PHONE_FIELD_DEFAULT_COUNTRY_CODE") || define("PHONE_FIELD_DEFAULT_COUNTRY_CODE","+420");
-defined("PHONE_FIELD_SAMPLE_PHONE_NUMBER") || define("PHONE_FIELD_SAMPLE_PHONE_NUMBER","+420 605 123 456");
+defined("PHONE_FIELD_DEFAULT_COUNTRY_CODE") || define("PHONE_FIELD_DEFAULT_COUNTRY_CODE","CZ"); // "CZ", "+420"
+defined("PHONE_FIELD_SAMPLE_PHONE_NUMBER") || define("PHONE_FIELD_SAMPLE_PHONE_NUMBER","");
 
 class PhoneField extends RegexField{
 
@@ -14,12 +14,16 @@ class PhoneField extends RegexField{
 		"CZ" => "+420 605 123 456",
 		"DE" => "+49 69 1234 5678",
 		"DK" => "+45 123 4567 9",
+		"EE" => "+372 58 XXXXXX",
 		"EG" => "+20 2 XXXXXXXX", // ???
 		"GB" => "+44 7911 123456",
+		"HR" => "+385 43 XXX XXXX",
+		"HU" => "+36 52 123 4567",
 		"IL" => "+972 558 5556 42",
 		"IN" => "+91 123 4567 8910",
 		"JP" => "+81 123 5678 9101",
 		"KZ" => "+997 727 123 46",
+		"LT" => "+370 XXXX XXXX",
 		"LV" => "+371 6678 1234",
 		"MA" => "+212 520 XXXXXX",
 		"MD" => "+373 1234 5678",
@@ -27,8 +31,11 @@ class PhoneField extends RegexField{
 		"NO" => "+47 815 XX XXX",
 		"NZ" => "+64 9 123 4567",
 		"PE" => "+51 1234 567",
+    "PL" => "+48 605 555 555",
+		"RO" => "+40 0 XXX XXX XXX",
 		"RS" => "+381 11 222 5522",
 		"RU" => "+7 123 4567 901",
+		"SI" => "+386 1 XXX XX XX",
 		"SK" => "+421 905 123456",
 		"SM" => "+378 XXXXXX",
 		"TN" => "+216 98123456",
@@ -43,9 +50,22 @@ class PhoneField extends RegexField{
 			"error_messages" => array(),
 			"help_text" => _("Enter phone number in format %sample_phone_number%"),
 			"null_empty_output" => true,
-			"default_country_code" => PHONE_FIELD_DEFAULT_COUNTRY_CODE, // "421" or "+420"
+			"default_country_code" => PHONE_FIELD_DEFAULT_COUNTRY_CODE, // "421" or "+420" or even "CZ", "SK", "AT"...
 			"sample_phone_number" => PHONE_FIELD_SAMPLE_PHONE_NUMBER,
 		);
+
+		if(preg_match('/^[A-Z]{2}$/',$options["default_country_code"])){
+			$country = $options["default_country_code"];
+			if(!isset(self::$SAMPLE_PHONE_NUMBERS[$country])){
+				trigger_error(sprintf('PhoneField: Sample phone number not set for country "%s", using "CZ"',$country));
+				$country = "CZ";
+			}
+			$sample_phone_number = self::$SAMPLE_PHONE_NUMBERS[$country];
+			!$options["sample_phone_number"] && ($options["sample_phone_number"] = $sample_phone_number);
+			$options["default_country_code"] = preg_replace('/ .*/','',$sample_phone_number);
+		}
+
+		!$options["sample_phone_number"] && ($options["sample_phone_number"] = self::$SAMPLE_PHONE_NUMBERS["CZ"]);
 
 		$options += array(
 			"initial" => $options["default_country_code"] ? $options["default_country_code"]." " : "",
