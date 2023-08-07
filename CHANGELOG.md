@@ -3,6 +3,11 @@ All notable changes to this project will be documented in this file.
 
 ## [Unreleased]
 
+## [1.1.3] - 2023-08-07
+
+* b22735d - An ISO-2 country code can be set to the option default_country_code
+* c3483cb - It is required PHP>=5.6.0
+
 ## [1.1.2] - 2023-01-04
 
 * 4a3cb92 - PHP8.1 issue
