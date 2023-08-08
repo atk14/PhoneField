@@ -3,6 +3,10 @@ All notable changes to this project will be documented in this file.
 
 ## [Unreleased]
 
+## [1.1.4] - 2023-08-08
+
+* 040fc57 - Added Belgium sample phone
+
 ## [1.1.3] - 2023-08-07
 
 * b22735d - An ISO-2 country code can be set to the option default_country_code
