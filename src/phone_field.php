@@ -7,6 +7,7 @@ class PhoneField extends RegexField{
 	protected static $SAMPLE_PHONE_NUMBERS = [
 		"AR" => "+54 9 XXX XXX XXXX",
 		"AT" => "+43 1234 56789",
+		"BE" => "+32 81 12 34 56",
 		"BG" => "+359 2 123 4567",
 		"CA" => "+1 604 555 5555",
 		"CH" => "+41 61 XXX XXXX",
