@@ -3,6 +3,10 @@ All notable changes to this project will be documented in this file.
 
 ## [Unreleased]
 
+## [1.1.5] - 2023-08-08
+
+* de10059 - Added sample phone number for Netherlands
+
 ## [1.1.4] - 2023-08-08
 
 * 040fc57 - Added Belgium sample phone
