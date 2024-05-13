@@ -127,6 +127,7 @@ class PhoneField extends RegexField{
 		$dcc = $this->default_country_code;
 		$dcc = preg_replace('/^\+/','',$dcc); // "+420" -> "420"
 
+		$value = (string)$value;
 		$value = preg_replace('/[\s-]/','',$value);
 		$value = str_replace(html_entity_decode('&nbsp;'),'',$value); // removing non-breaking space
 
