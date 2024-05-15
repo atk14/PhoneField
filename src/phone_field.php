@@ -23,6 +23,7 @@ class PhoneField extends RegexField{
 		"HU" => "+36 52 123 4567",
 		"IL" => "+972 558 5556 42",
 		"IN" => "+91 123 4567 8910",
+		"IT" => "+39 06 XXXXXXXX",
 		"JP" => "+81 123 5678 9101",
 		"KZ" => "+997 727 123 46",
 		"LT" => "+370 XXXX XXXX",
