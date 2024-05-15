@@ -1,7 +1,11 @@
 # Change Log
-All notable changes to this project will be documented in this file.
+All notable changes to PhoneField will be documented in this file.
 
 ## [Unreleased]
+
+## [1.1.8] - 2024-05-15
+
+* 79735fe - Added sample phone number for IT
 
 ## [1.1.7] - 2024-05-13
 
