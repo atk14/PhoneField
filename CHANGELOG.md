@@ -3,6 +3,10 @@ All notable changes to PhoneField will be documented in this file.
 
 ## [Unreleased]
 
+## [1.1.9] - 2024-08-13
+
+* aed277b - Added sample phone number for ES
+
 ## [1.1.8] - 2024-05-15
 
 * 79735fe - Added sample phone number for IT
