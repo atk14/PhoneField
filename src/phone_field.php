@@ -50,6 +50,8 @@ class PhoneField extends RegexField{
 		"ZA" => "+27 123 456 789",
 	];
 
+	public $default_country_code;
+
 	function __construct($options = array()){
 		$options += array(
 			"error_messages" => array(),
