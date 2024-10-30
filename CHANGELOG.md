@@ -3,6 +3,10 @@ All notable changes to PhoneField will be documented in this file.
 
 ## [Unreleased]
 
+## [1.1.10] - 2024-10-30
+
+* b62eb3f - PHP8.3 issue
+
 ## [1.1.9] - 2024-08-13
 
 * aed277b - Added sample phone number for ES
