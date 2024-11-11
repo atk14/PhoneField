@@ -19,7 +19,9 @@ class PhoneField extends RegexField{
 		"EG" => "+20 2 XXXXXXXX", // ???
 		"ES" => "+34 9XX XXX XXX",
 		"FR" => "+33 X XX XX XX XX",
+		"GE" => "+995 XXX XXX XXXX",
 		"GB" => "+44 7911 123456",
+		"GR" => "+30 XXX XXX XXXX",
 		"HR" => "+385 43 XXX XXXX",
 		"HU" => "+36 52 123 4567",
 		"IL" => "+972 558 5556 42",
@@ -40,6 +42,7 @@ class PhoneField extends RegexField{
 		"RO" => "+40 0 XXX XXX XXX",
 		"RS" => "+381 11 222 5522",
 		"RU" => "+7 123 4567 901",
+		"SE" => "+46 XX XX XX XX",
 		"SG" => "+65 XXXX XXXX",
 		"SI" => "+386 1 XXX XX XX",
 		"SK" => "+421 905 123456",
