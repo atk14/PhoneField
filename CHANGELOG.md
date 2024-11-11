@@ -3,6 +3,11 @@ All notable changes to PhoneField will be documented in this file.
 
 ## [Unreleased]
 
+## [1.1.11] - 2024-11-11
+
+* a3e116c - Added sample phone numbers for GE, GR and SE
+* f5183b5 - Added sample phone number for SG
+
 ## [1.1.10] - 2024-10-30
 
 * b62eb3f - PHP8.3 issue
