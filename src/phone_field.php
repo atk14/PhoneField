@@ -40,6 +40,7 @@ class PhoneField extends RegexField{
 		"RO" => "+40 0 XXX XXX XXX",
 		"RS" => "+381 11 222 5522",
 		"RU" => "+7 123 4567 901",
+		"SG" => "+65 XXXX XXXX",
 		"SI" => "+386 1 XXX XX XX",
 		"SK" => "+421 905 123456",
 		"SM" => "+378 XXXXXX",
