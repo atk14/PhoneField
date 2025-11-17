@@ -11,9 +11,18 @@ class TcPhoneField extends TcBase {
 		$form->add_field("phone3", new PhoneField(array(
 			"initial" => "",
 		)));
+		$form->add_field("phone3b", new PhoneField(array(
+			"default_country_code" => "",
+			"initial" => "",
+		)));
 
 		$form->add_field("phone_at", new PhoneField(array(
 			"default_country_code" => "AT"
+		)));
+
+		$form->add_field("phone4", new PhoneField(array(
+			"default_country_code" => "CZ",
+			"initial" => "+421.6045123456",
 		)));
 
 		$field = $form->get_field("phone");
@@ -23,10 +32,16 @@ class TcPhoneField extends TcBase {
 		$this->assertEquals('<input type="text" name="phone2" class="text form-control" id="id_phone2" value="421 " />',$field->as_widget());
 
 		$field = $form->get_field("phone3");
-		$this->assertEquals('<input required="required" type="text" name="phone3" class="text form-control" id="id_phone3" />',$field->as_widget());
+		$this->assertEquals('<input required="required" type="text" name="phone3" class="text form-control" id="id_phone3" value="+420 " />',$field->as_widget());
+
+		$field = $form->get_field("phone3b");
+		$this->assertEquals('<input required="required" type="text" name="phone3b" class="text form-control" id="id_phone3b" />',$field->as_widget());
 
 		$field = $form->get_field("phone_at");
 		$this->assertEquals('<input required="required" type="text" name="phone_at" class="text form-control" id="id_phone_at" value="+43 " />',$field->as_widget());
+
+		$field = $form->get_field("phone4");
+		$this->assertEquals('<input required="required" type="text" name="phone4" class="text form-control" id="id_phone4" value="+421 604 512 345 6" />',$field->as_widget());
 	}
 
 	function test_format_initial_data(){
@@ -35,9 +50,18 @@ class TcPhoneField extends TcBase {
 		$this->assertEquals("+420 605 123 456",$field->format_initial_data("+420.605123456"));
 		$this->assertEquals("+420 605 123 456 78",$field->format_initial_data("+420.60512345678"));
 		$this->assertEquals("+420",$field->format_initial_data("+420"));
+		$this->assertEquals("+420 ",$field->format_initial_data(""));
 		$this->assertEquals("+420.",$field->format_initial_data("+420."));
 		$this->assertEquals("+420 1",$field->format_initial_data("+420.1"));
 		$this->assertEquals("+1345 123 456",$field->format_initial_data("+1345.123456"));
+
+		//
+
+		$field = new PhoneField(array("default_country_code" => null));
+
+		$this->assertEquals("+420 605 123 456",$field->format_initial_data("+420.605123456"));
+		$this->assertEquals("+420",$field->format_initial_data("+420"));
+		$this->assertEquals("",$field->format_initial_data(""));
 	}
 
 	function test(){

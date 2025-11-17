@@ -103,6 +103,9 @@ class PhoneField extends RegexField{
 	}
 
 	function format_initial_data($phone){
+		if(strlen(trim((string)$phone))==0){
+			return $this->default_country_code ? $this->default_country_code." " : "";
+		}
 		if(preg_match('/^(\+\d+)\.(\d+)$/',(string)$phone,$matches)){
 			$cc = $matches[1];
 			$number = $matches[2];
