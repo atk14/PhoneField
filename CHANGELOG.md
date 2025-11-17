@@ -3,6 +3,11 @@ All notable changes to PhoneField will be documented in this file.
 
 ## [Unreleased]
 
+## [1.1.12] - 2025-11-17
+
+* ff1cf1e - The PhoneField::format_initial_data() formats NULL as the prefix of the default country
+* 3caad34 - PhoneField is now compatible with PHP>=7.0
+
 ## [1.1.11] - 2024-11-11
 
 * a3e116c - Added sample phone numbers for GE, GR and SE
