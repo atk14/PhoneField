@@ -3,6 +3,10 @@ All notable changes to PhoneField will be documented in this file.
 
 ## [Unreleased]
 
+## [1.1.13] - 2025-11-30
+
+* c6ba3f0 - Added new methodis `PhoneField::_get_sample_by_phone_number()` and `PhoneField::_format_by_sample()`
+
 ## [1.1.12] - 2025-11-17
 
 * ff1cf1e - The PhoneField::format_initial_data() formats NULL as the prefix of the default country
