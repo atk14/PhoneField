@@ -150,6 +150,41 @@ class TcPhoneField extends TcBase {
 		$this->assertEquals("Enter valid phone number (+421 905 123456)",$err);
 	}
 
+	function test__get_sample_by_phone_number(){
+		$pf = new PhoneField();
+
+		$this->assertEquals(null,$pf->_get_sample_by_phone_number("9999999",$country,$prefix,$number));
+		$this->assertEquals(null,$country);
+		$this->assertEquals(null,$prefix);
+		$this->assertEquals(null,$number);
+
+		$this->assertEquals("+420 605 123 456",$pf->_get_sample_by_phone_number("+420.605111222",$country,$prefix,$number));
+		$this->assertEquals("CZ",$country);
+		$this->assertEquals("+420",$prefix);
+		$this->assertEquals("605111222",$number);
+
+		$this->assertEquals("+421 905 123456",$pf->_get_sample_by_phone_number("421605111333",$country,$prefix,$number));
+		$this->assertEquals("SK",$country);
+		$this->assertEquals("+421",$prefix);
+		$this->assertEquals("605111333",$number);
+
+		$this->assertEquals(null,$pf->_get_sample_by_phone_number("998123456",$country,$prefix,$number));
+		$this->assertEquals(null,$country);
+		$this->assertEquals("+998",$prefix);
+		$this->assertEquals("123456",$number);
+	}
+
+	function test__format_by_sample(){
+		$pf = new PhoneField();
+		$this->assertEquals("+420 603 345 678",$pf->_format_by_sample("+420.603345678"));
+		$this->assertEquals("+420 603 345 678",$pf->_format_by_sample("+420603345678"));
+		$this->assertEquals("+420 603 345 678 999",$pf->_format_by_sample("+420.603345678999"));
+		$this->assertEquals("+1 877 448 4820",$pf->_format_by_sample("+18774484820"));
+		$this->assertEquals("+1 877 448 48",$pf->_format_by_sample("+187744848"));
+		$this->assertEquals("+998 123456",$pf->_format_by_sample("+998123456")); // known prefix, no sample
+		$this->assertEquals("+99999999",$pf->_format_by_sample("+99999999")); // uknown prefix
+	}
+
 	function _testValidValues($ary){
 		foreach($ary as $input => $phone){
 			$cleaned_phone = $this->assertValid($input);
