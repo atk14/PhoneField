@@ -1,6 +1,8 @@
 PhoneField
 ==========
 
+[![Tests](https://github.com/atk14/PhoneField/actions/workflows/tests.yml/badge.svg)](https://github.com/atk14/PhoneField/actions/workflows/tests.yml)
+
 ATK14 form field for entering phone numbers.
 
 Installation
