@@ -3,6 +3,11 @@ All notable changes to PhoneField will be documented in this file.
 
 ## [Unreleased]
 
+## [1.1.14] - 2026-04-22
+
+* aba03d1 - Added sample phone numbers for BR
+* 236fcef - Added sample phone numbers for Ireland (IE)
+
 ## [1.1.13] - 2025-11-30
 
 * c6ba3f0 - Added new methodis `PhoneField::_get_sample_by_phone_number()` and `PhoneField::_format_by_sample()`
