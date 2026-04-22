@@ -25,6 +25,7 @@ class PhoneField extends RegexField{
 		"GR" => "+30 XXX XXX XXXX",
 		"HR" => "+385 43 XXX XXXX",
 		"HU" => "+36 52 123 4567",
+		"IE" => "+353 X XXX XXXX",
 		"IL" => "+972 558 5556 42",
 		"IN" => "+91 123 4567 8910",
 		"IT" => "+39 06 XXXXXXXX",
