@@ -3,6 +3,10 @@ All notable changes to PhoneField will be documented in this file.
 
 ## [Unreleased]
 
+## [1.1.15] - 2026-04-22
+
+* d2fa5ac - The package is compatible with PHP>=7.1
+
 ## [1.1.14] - 2026-04-22
 
 * aba03d1 - Added sample phone numbers for BR
