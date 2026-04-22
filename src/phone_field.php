@@ -82,7 +82,7 @@ class PhoneField extends RegexField{
 			"sample_phone_number" => PHONE_FIELD_SAMPLE_PHONE_NUMBER,
 		);
 
-		if(preg_match('/^[A-Z]{2}$/',$options["default_country_code"])){
+		if(preg_match('/^[A-Z]{2}$/',(string)$options["default_country_code"])){
 			$country = $options["default_country_code"];
 			if(!isset(self::$SAMPLE_PHONE_NUMBERS[$country])){
 				trigger_error(sprintf('PhoneField: Sample phone number not set for country "%s", using "CZ"',$country));
